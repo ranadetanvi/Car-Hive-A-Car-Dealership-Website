@@ -1,0 +1,137 @@
+/* Reset some default styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f9f9f9;
+    color: #333;
+}
+
+header {
+    background-color: #333;
+    color: #fff;
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+header .logo h1 {
+    font-size: 30px;
+    font-weight: bold;
+}
+
+nav ul {
+    list-style-type: none;
+}
+
+nav ul li {
+    display: inline-block;
+    margin-left: 20px;
+}
+
+nav ul li a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 18px;
+}
+
+.hero {
+    background: url('C:\Users\tanvi\OneDrive\Desktop\Car Dealership Website\1737406416669.jpg') no-repeat center center/cover;
+    color: black;
+    text-align: left;
+    padding: 100px 100px;
+}
+
+.hero h2 {
+    font-size: 50px;
+    margin-bottom: 20px;
+}
+
+.hero p {
+    font-size: 20px;
+    margin-bottom: 30px;
+}
+
+.hero .btn {
+    padding: 10px 20px;
+    background-color: #ff6600;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    font-size: 18px;
+}
+
+.hero .btn:hover {
+    background-color: #e65c00;
+}
+
+.img{
+    float:right;
+}
+
+.featured-cars {
+    padding: 50px 20px;
+    text-align: center;
+    background-color: #fff;
+}
+
+.featured-cars h2 {
+    font-size: 40px;
+    margin-bottom: 40px;
+}
+
+.car-grid {
+    display: flex;
+    justify-content: space-around;
+    gap: 20px;
+}
+
+.car-card {
+    background-color: #f4f4f4;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 30%;
+    text-align: center;
+}
+
+.car-card img {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+}
+
+.car-card h3 {
+    font-size: 24px;
+    margin-top: 15px;
+}
+
+.car-card p {
+    font-size: 20px;
+    margin-top: 10px;
+}
+
+.car-card a {
+    display: inline-block;
+    margin-top: 15px;
+    color: #ff6600;
+    text-decoration: none;
+    font-size: 18px;
+}
+
+.car-card a:hover {
+    text-decoration: underline;
+}
+
+footer {
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    padding: 20px;
+    margin-top: 50px;
+}
