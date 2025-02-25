@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us</title>
+    <style>
+        /* General Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+            transition: all 0.4s ease-in-out;
+        }
+
+        /* Light Mode */
+        body {
+            background: linear-gradient(180deg, #FDF8E1, #DDEAFF);
+            color: #222;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        /* Dark Mode */
+        .dark-mode {
+            background: linear-gradient(180deg, #0B1726, #122B46);
+            color: #f4f4f4;
+        }
+
+        /* Header */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 60px;
+            background: linear-gradient(135deg, #003D73, #002652);
+            color: white;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            font-size: 22px;
+        }
+
+        .dark-mode header {
+            background: linear-gradient(135deg, #102540, #071725);
+        }
+
+        .logo {
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: white;
+            font-weight: bold;
+            font-size: 20px;
+            transition: color 0.3s, text-shadow 0.3s;
+        }
+
+        nav ul li a:hover {
+            color: #F4A900;
+            text-shadow: 0 0 12px rgba(244, 169, 0, 0.8);
+        }
+
+        /* Contact Form - Centered Between Header and Footer */
+        .container {
+            width: 90%;
+            max-width: 650px; /* Slightly larger */
+            padding: 40px; /* Increased padding */
+            border-radius: 15px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+            background: rgba(255, 255, 255, 0.95);
+            text-align: center;
+            font-size: 20px;
+            margin-top: 140px; /* More spacing from header */
+            margin-bottom: 100px; /* More spacing from footer */
+        }
+
+        .dark-mode .container {
+            background: rgba(50, 50, 50, 0.95);
+        }
+
+        .container h2 {
+            font-size: 34px;
+            margin-bottom: 20px;
+            color: #c4ddf2;
+        }
+
+        .container p {
+            font-size: 18px;
+            margin-bottom: 25px;
+            color:#f3ecec;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+            text-align: left;
+        }
+
+        label {
+            display: block;
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 8px;
+        }
+
+        input, textarea {
+            width: 100%;
+            padding: 14px;
+            border: 2px solid #003D73;
+            border-radius: 8px;
+            font-size: 18px;
+            background: #f8f9fa;
+            transition: 0.3s;
+        }
+
+        input:focus, textarea:focus {
+            border-color: #007bff;
+            outline: none;
+            box-shadow: 0 0 8px rgba(0, 123, 255, 0.3);
+        }
+
+        button {
+            padding: 16px 24px;
+            border: none;
+            background: linear-gradient(135deg, #007bff, #00c6ff);
+            color: white;
+            cursor: pointer;
+            border-radius: 8px;
+            font-size: 20px;
+            transition: 0.3s;
+            font-weight: bold;
+            width: 100%;
+        }
+
+        button:hover {
+            background: linear-gradient(135deg, #0056b3, #0084ff);
+            transform: scale(1.05);
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 15px;
+            background: #003D73;
+            color: white;
+            width: 100%;
+            position: fixed;
+            bottom: 0;
+        }
+
+        .dark-mode footer {
+            background: #071725;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">Car Hive</div>
+        <nav>
+            <ul>
+                <li><a href="hm.html">Home</a></li>
+                <li><a href="car.html">Cars</a></li>
+                <li><a href="#">Services</a></li>
+                <li><a href="#">About Us</a></li>
+                <li><a href="cont.html">Contact Us</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="container">
+        <h2>Contact Us</h2>
+        <p>We'd love to hear from you! Fill out the form below and we'll get back to you soon.</p>
+        <form id="contactForm">
+            <div class="form-group">
+                <label for="name">Name</label>
+                <input type="text" id="name" required>
+            </div>
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" id="email" required>
+            </div>
+            <div class="form-group">
+                <label for="message">Message</label>
+                <textarea id="message" rows="6" required></textarea>
+            </div>
+            <button type="submit">🚀 Send Message</button>
+        </form>
+    </div>
+
+    <footer>
+        <p>&copy; 2025 Car Hive. All rights reserved.</p>
+    </footer>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const form = document.getElementById("contactForm");
+
+            form.addEventListener("submit", (event) => {
+                event.preventDefault();
+
+                const name = document.getElementById("name").value.trim();
+                const email = document.getElementById("email").value.trim();
+                const message = document.getElementById("message").value.trim();
+
+                if (name === "" || email === "" || message === "") {
+                    alert("Please fill in all fields.");
+                    return;
+                }
+
+                if (!validateEmail(email)) {
+                    alert("Please enter a valid email address.");
+                    return;
+                }
+
+                alert("Message sent successfully!");
+                form.reset();
+            });
+
+            function validateEmail(email) {
+                const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                return re.test(email);
+            }
+        });
+    </script>
+    <script src="hm2.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Car Listings</title>
+    <style>
+        /* General Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+            transition: all 0.3s ease-in-out;
+        }
+
+        body {
+            background: linear-gradient(180deg, #FDF8E1, #DDEAFF);
+            color: #222;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            padding-top: 80px;
+        }
+
+        /* Header */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 60px;
+            background: linear-gradient(135deg, #003D73, #002652);
+            color: white;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            font-size: 22px;
+        }
+
+        .logo {
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: white;
+            font-weight: bold;
+            font-size: 20px;
+            transition: color 0.3s, text-shadow 0.3s;
+        }
+
+        nav ul li a:hover {
+            color: #F4A900;
+            text-shadow: 0 0 12px rgba(244, 169, 0, 0.8);
+        }
+
+        /* Car Listings */
+        .container {
+            width: 90%;
+            max-width: 1300px;
+            margin: 40px auto;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+            background: rgba(255, 255, 255, 0.95);
+            text-align: center;
+        }
+
+        .car-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .car-card {
+            border: 2px solid #003D73;
+            padding: 15px;
+            border-radius: 12px;
+            text-align: center;
+            background: #f8f9fa;
+            transition: transform 0.3s, filter 0.3s;
+            position: relative;
+            cursor: pointer;
+        }
+
+        .car-card img {
+            width: 100%;
+            height: 140px;
+            object-fit: cover;
+            border-radius: 8px;
+        }
+
+        .view-more {
+            display: inline-block;
+            margin-top: 10px;
+            padding: 8px 16px;
+            background: #003D73;
+            color: white;
+            border-radius: 5px;
+            text-decoration: none;
+            font-size: 16px;
+            font-weight: bold;
+            transition: background 0.3s ease-in-out;
+        }
+
+        .view-more:hover {
+            background: #F4A900;
+        }
+
+        /* Popup Image */
+        .popup-wrapper {
+            position: absolute;
+            pointer-events: none;
+            display: none;
+            z-index: 999;
+            justify-content: center;
+            align-items: center;
+            transition: opacity 0.3s ease-in-out;
+        }
+
+        .popup-wrapper img {
+            width: 100%;
+            max-width: 220px; /* Slightly larger */
+            border-radius: 8px;
+            transition: transform 0.2s ease-in-out;
+        }
+
+        .popup-wrapper.active {
+            display: flex;
+            opacity: 1;
+        }
+
+        /* Blur effect */
+        .blur {
+            filter: blur(5px);
+        }
+
+        /* Dark Mode Styles */
+.dark-mode {
+    background: #121212;
+    color: #fff;
+}
+
+.dark-mode header {
+    background: #1a1a1a;
+}
+
+.dark-mode .container {
+    background: rgba(255, 255, 255, 0.1);
+    color: white;
+}
+
+.dark-mode .car-card {
+    border: 2px solid white;
+    background: #222;
+    color: white;
+}
+
+.dark-mode a {
+    color: white;
+}
+
+.dark-mode .view-more {
+    background: #F4A900;
+}
+
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">Car Hive</div>
+        <nav>
+            <ul>
+                <li><a href="hm.html">Home</a></li>
+                <li><a href="car.html">Cars</a></li>
+                <li><a href="#">Services</a></li>
+                <li><a href="#">About Us</a></li>
+                <li><a href="cont.html">Contact Us</a></li>
+            </ul>
+        </nav>
+    </header>
+    
+    <div class="container" id="mainContent">
+        <h2>Available Cars</h2>
+        <div class="car-list" id="carList"></div>
+    </div>
+    
+    <div class="popup-wrapper" id="popupWrapper">
+        <img id="popupImage" src="">
+    </div>
+
+    <script>
+        const cars = Array.from({ length: 200 }, (_, i) => ({
+            name: `Car Model ${i + 1}`,
+            img: `images/car${i + 1}.jpg`
+        }));
+
+        let popupTimeout;
+
+        function displayCars(carArray) {
+            const carList = document.getElementById("carList");
+            carList.innerHTML = "";
+            carArray.forEach(car => {
+                const carCard = document.createElement("div");
+                carCard.classList.add("car-card");
+                carCard.innerHTML = `
+                    <img src="${car.img}" alt="${car.name}">
+                    <h3>${car.name}</h3>
+                    <a href="#" class="view-more">View More</a>
+                `;
+
+                const imgElement = carCard.querySelector("img");
+                imgElement.addEventListener("click", (e) => showPopup(e, car.img));
+                imgElement.addEventListener("mouseenter", (e) => showPopup(e, car.img));
+                imgElement.addEventListener("mouseleave", hidePopup);
+
+                carList.appendChild(carCard);
+            });
+        }
+
+        function showPopup(event, imgSrc) {
+            const popup = document.getElementById("popupWrapper");
+            const imgElement = document.getElementById("popupImage");
+            imgElement.src = imgSrc;
+
+            // Get the image position and size
+            const imgRect = event.target.getBoundingClientRect();
+
+            // Position the popup exactly at the same spot
+            popup.style.left = `${imgRect.left}px`;
+            popup.style.top = `${imgRect.top + window.scrollY - 20}px`;  // Slightly above the image
+            popup.style.width = `${imgRect.width}px`;
+            popup.style.height = `${imgRect.height}px`;
+
+            // Slightly enlarge the popup image
+            imgElement.style.transform = "scale(1.1)";
+
+            // Show popup with a smooth transition
+            popup.classList.add("active");
+            document.getElementById("mainContent").classList.add("blur");
+
+            // Set a timeout to hide the popup after 1.5 seconds
+            clearTimeout(popupTimeout);
+            popupTimeout = setTimeout(() => {
+                popup.classList.remove("active");
+                document.getElementById("mainContent").classList.remove("blur");
+            }, 1500);  // Hide popup after 1.5 seconds
+        }
+
+        function hidePopup() {
+            // Do nothing here, the popup is hidden via the timeout
+        }
+
+        displayCars(cars);
+    </script>
+    <script src="hm2.js" defer></script>
+</body>
+</html>
