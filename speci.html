@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Car Specifications | Car Hive</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+    <style>
+        /* General Styles */
+       
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    background: #ffffff;
+    color: black;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    min-height: 100vh;
+    font-size: 16px;
+    padding-top: 80px;
+}
+
+/* Header */
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 40px;
+    background: #003D73;
+    width: 100%;
+    position: fixed;
+    top: 0;
+    z-index: 1000;
+}
+
+.logo {
+    font-size: 28px;
+    font-weight: bold;
+    color: #F8B400;
+}
+
+nav ul {
+    display: flex;
+    list-style: none;
+    gap: 30px;
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: white;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+nav ul li a:hover {
+    color: #F8B400;
+}
+
+/* Main Container */
+.container {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    width: 80%;
+    margin-top: 40px;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+/* Image Container */
+.image-container {
+    position: relative;
+    width: 400px;
+    height: 300px;
+    overflow: hidden;
+    border-radius: 10px;
+    cursor: zoom-in;
+    border: 3px solid #003D73;
+}
+
+.zoom-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.2s ease-out, transform-origin 0.2s ease-out;
+}
+
+/* Slider Buttons */
+.slider-btn, .popup-slider-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(0, 0, 0, 0.5);
+    color: white;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    font-size: 20px;
+    z-index: 2;
+    border-radius: 5px;
+}
+
+.slider-btn:hover, .popup-slider-btn:hover {
+    background: rgba(0, 0, 0, 0.8);
+}
+
+#prev, #popup-prev { left: 5px; }
+#next, #popup-next { right: 5px; }
+
+/* Popup Modal */
+.popup-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 2000;
+}
+
+.popup-content {
+    position: relative;
+    width: 70%;
+    max-width: 600px;
+}
+
+.popup-content img {
+    width: 100%;
+    border-radius: 10px;
+}
+
+.close-btn {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    background: none;
+    color: white;
+    font-size: 30px;
+    border: none;
+    cursor: pointer;
+}
+
+/* Car Details */
+.car-details {
+    width: 50%;
+    max-width: 800px;
+    background: white;
+    padding: 18px;
+    border-radius: 10px;
+    text-align: left;
+}
+
+.car-details h2 {
+    color: #d2dee8;
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+.car-details p {
+    font-size: 20px;
+}
+.car-details h2{
+    padding-top: 20px;
+}
+
+/* Test Drive Button */
+.test-drive-btn {
+    display: inline-block;
+    margin-top: 15px;
+    padding: 12px 20px;
+    font-size: 18px;
+    font-weight: bold;
+    color: white;
+    background-color: #F8B400;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.test-drive-btn:hover {
+    background-color: #D99800;
+}
+
+/* Key Features Section */
+.key-features {
+    margin-top: 20px;
+}
+
+.key-features h2 {
+    color: #003D73;
+    font-size: 24px;
+    margin-bottom: 15px;
+}
+
+.features-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+    list-style: none;
+    padding: 15px;
+    font-size: 18px;
+}
+
+.key-features ul li {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.key-features ul li i {
+    color: #003D73;
+    font-size: 22px;
+}
+
+/* Footer */
+footer {
+    color: black;
+    padding: 50px 0;
+    text-align: center;
+    width: 100%;
+    margin-top: 40px;
+    background: none;
+}
+
+.footer-container {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    padding: 40px;
+    max-width: 1200px;
+    margin: auto;
+}
+
+.footer-container div {
+    flex: 1;
+    margin: 20px;
+    min-width: 250px;
+}
+
+.footer-container h3, .footer-container h4 {
+    color: #003D73;
+    font-size: 22px;
+}
+
+.footer-container p, .footer-container ul li {
+    font-size: 18px;
+}
+
+.footer-links ul {
+    list-style: none;
+    padding: 0;
+}
+
+.footer-links ul li {
+    margin: 10px 0;
+}
+
+.footer-links ul li a {
+    color: black;
+    text-decoration: none;
+    font-size: 18px;
+}
+
+.footer-links ul li a:hover {
+    color: #F8B400;
+}
+
+.footer-bottom {
+    padding: 20px;
+    font-size: 18px;
+    margin-top: 20px;
+}
+
+/* Light Mode (Default) */
+body {
+    background-color: #ffffff;
+    color: black;
+}
+
+/* Dark Mode */
+body.dark-mode {
+    background-color: #121212;
+    color: white;
+}
+
+/* Header */
+body.dark-mode header {
+    background-color: #1e1e1e;
+}
+
+.dark-mode nav ul li a:hover {
+    color: #F4A900;
+}
+
+/* Car Details Section */
+body.dark-mode .car-details {
+    background: #2b2b2b;
+    color: white;
+}
+
+/* Key Features Section */
+body.dark-mode .key-features h2,
+body.dark-mode .key-features ul li {
+    color: white;
+}
+
+/* Footer */
+body.dark-mode footer,
+body.dark-mode .footer-container h3,
+body.dark-mode .footer-container h4,
+body.dark-mode .footer-container p,
+body.dark-mode .footer-container ul li a,
+body.dark-mode .footer-bottom {
+    color: white;
+}
+
+/* Navigation Links */
+body.dark-mode nav ul li a {
+    color: white;
+}
+
+/* Buttons */
+body.dark-mode .test-drive-btn {
+    background-color: #F8B400;
+    color: black;
+}
+
+/* Car Features Icons */
+body.dark-mode .key-features ul li i {
+    color: white;
+}
+
+/* Car Cards */
+body.dark-mode .car-card {
+    background: #2b2b2b;
+    border-color: white;
+    color: white;
+}
+
+body.dark-mode .car-card img {
+    filter: brightness(0.9);
+}
+   
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <header>
+        <div class="logo">Car Hive</div>
+        <nav>
+            <ul>
+                <li><a href="hm.html">Home</a></li>
+                <li><a href="cars.html">Cars</a></li>
+                <li><a href="#">Services</a></li>
+                <li><a href="#">About Us</a></li>
+                <li><a href="contact.html">Contact Us</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Main Container -->
+    <div class="container">
+        <div class="image-container" id="zoom-container">
+            <img src="images/car1.jpg" alt="Car Image" class="zoom-image" id="main-image">
+            <button class="slider-btn" id="prev">&#10094;</button>
+            <button class="slider-btn" id="next">&#10095;</button>
+        </div>
+    
+
+    <!-- Popup Modal -->
+    <div class="popup-container" id="popup">
+        <div class="popup-content">
+            <button class="close-btn" id="close-popup">&times;</button>
+            <button class="popup-slider-btn" id="popup-prev">&#10094;</button>
+            <img src="images/car1.jpg" id="popup-image">
+            <button class="popup-slider-btn" id="popup-next">&#10095;</button>
+        </div>
+    </div>
+    <div class="car-details">
+        <h2>Car Name</h2>
+        <p>
+            The <strong>XYZ Model</strong> is a stunning vehicle that combines power and elegance. 
+            It delivers an impressive <strong>15 km/l</strong> mileage and runs on <strong>petrol</strong> 
+            fuel. The car features a smooth <strong>automatic transmission</strong>, making driving effortless. 
+            this car offers premium performance and 
+            outstanding comfort.
+        </p>
+        <h2>$45000-$10000</h2>
+        <a href="login.html">
+        <button class="test-drive-btn" >Book a Test Drive </button>
+        </a>
+    </div>
+    </div>
+
+    <!-- Key Features Section -->
+<div class="key-features">
+    <h2>Key Features</h2>
+    <ul class="features-grid">
+        <li><i class="fas fa-cogs"></i> <strong>Engine:</strong> 2.0L Turbocharged Petrol</li>
+        <li><i class="fas fa-tachometer-alt"></i> <strong>Transmission:</strong> 8-speed Automatic</li>
+        <li><i class="fas fa-gas-pump"></i> <strong>Mileage:</strong> 15 km/l</li>
+        <li><i class="fas fa-oil-can"></i> <strong>Fuel Type:</strong> Petrol</li>
+        <li><i class="fas fa-users"></i> <strong>Seating Capacity:</strong> 5</li>
+        <li><i class="fas fa-tv"></i> <strong>Infotainment System:</strong> 10-inch Touchscreen</li>
+        <li><i class="fas fa-shield-alt"></i> <strong>Safety Rating:</strong> 5-Star</li>
+        <li><i class="fas fa-sun"></i> <strong>Sunroof:</strong> Panoramic Sunroof</li>
+        <li><i class="fas fa-car-crash"></i> <strong>Airbags:</strong> 6 Airbags for Safety</li>
+        <li><i class="fas fa-car"></i> <strong>Parking Assist:</strong> 360° Camera with Sensors</li>
+    </ul>
+</div>
+<div class="footer-bottom">
+    <p>&copy; 2025 Car Hive. All Rights Reserved.</p>
+</div>
+
+    <script>
+        const images = ["images/car1.jpg", "images/car2.jpg", "images/car3.jpg"];
+        let currentIndex = 0;
+
+        const mainImage = document.getElementById("main-image");
+        const popupImage = document.getElementById("popup-image");
+        const popup = document.getElementById("popup");
+
+        function updateImage(index) {
+            mainImage.src = images[index];
+            popupImage.src = images[index];
+        }
+
+        function changeImage(direction) {
+            currentIndex = (currentIndex + direction + images.length) % images.length;
+            updateImage(currentIndex);
+        }
+
+        document.getElementById("prev").addEventListener("click", () => changeImage(-1));
+        document.getElementById("next").addEventListener("click", () => changeImage(1));
+
+        document.getElementById("popup-prev").addEventListener("click", () => changeImage(-1));
+        document.getElementById("popup-next").addEventListener("click", () => changeImage(1));
+
+        mainImage.addEventListener("click", () => popup.style.display = "flex");
+        document.getElementById("close-popup").addEventListener("click", () => popup.style.display = "none");
+
+        document.querySelector(".image-container").addEventListener("mousemove", function(e) {
+            const { left, top, width, height } = this.getBoundingClientRect();
+            const x = ((e.clientX - left) / width) * 100;
+            const y = ((e.clientY - top) / height) * 100;
+            mainImage.style.transformOrigin = `${x}% ${y}%`;
+            mainImage.style.transform = "scale(1.8)";
+        });
+
+        document.querySelector(".image-container").addEventListener("mouseleave", () => {
+            mainImage.style.transform = "scale(1)";
+        });
+
+        document.querySelector(".test-drive-btn").addEventListener("click", function() {
+            alert("Redirecting to the Test Drive Booking Page!");
+        });
+
+    </script>
+    <script src="hm2.js"></script>
+
+</body>
+</html>

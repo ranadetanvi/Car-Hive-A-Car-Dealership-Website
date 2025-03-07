@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Car Hive</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <style>
+        /* General Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+            transition: all 0.3s ease-in-out;
+        }
+
+        body {
+            background: linear-gradient(180deg, #FDF8E1, #DDEAFF);
+            color: #222;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+            justify-content: center;
+        }
+
+        /* Header */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 60px;
+            background: linear-gradient(135deg, #003D73, #002652);
+            color: white;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            font-size: 22px;
+        }
+
+        .logo {
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: white;
+            font-weight: bold;
+            font-size: 20px;
+            transition: color 0.3s, text-shadow 0.3s;
+        }
+
+        nav ul li a:hover {
+            color: #F4A900;
+            text-shadow: 0 0 12px rgba(244, 169, 0, 0.8);
+        }
+
+        /* Login Container */
+        .login-container {
+            width: 90%;
+            max-width: 400px;
+            background: rgba(255, 255, 255, 0.95);
+            padding: 40px;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+            margin-top: 100px;
+        }
+
+        .login-container h2 {
+            font-size: 28px;
+            margin-bottom: 20px;
+            color: #003D73;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+            text-align: left;
+            position: relative;
+        }
+
+        label {
+            display: block;
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 8px;
+        }
+
+        input {
+            width: 100%;
+            padding: 14px;
+            border: 2px solid #003D73;
+            border-radius: 8px;
+            font-size: 18px;
+            background: #f8f9fa;
+            padding-right: 40px;
+        }
+
+        input:focus {
+            border-color: #007bff;
+            outline: none;
+            box-shadow: 0 0 8px rgba(0, 123, 255, 0.3);
+        }
+
+        /* Password Toggle Icon (Centered) */
+        .password-container {
+            position: relative;
+            width: 100%;
+        }
+
+        .password-container i {
+            position: absolute;
+            right: 15px;
+            top: 67%;
+            transform: translateY(-50%);
+            cursor: pointer;
+            font-size: 18px;
+            color: #003D73;
+        }
+
+        button {
+            padding: 14px;
+            border: none;
+            background: linear-gradient(135deg, #007bff, #00c6ff);
+            color: white;
+            cursor: pointer;
+            border-radius: 8px;
+            font-size: 20px;
+            transition: 0.3s;
+            font-weight: bold;
+            width: 100%;
+        }
+
+        button:hover {
+            background: linear-gradient(135deg, #0056b3, #0084ff);
+            transform: scale(1.05);
+        }
+        .toggle-form {
+            margin-top: 12px;
+            font-size: 14px;
+        }
+
+        .toggle-form a {
+            color: #007bff;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .toggle-form a:hover {
+            text-decoration: underline;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 15px;
+            color: black;
+            width: 100%;
+            position: absolute;
+            bottom: 0;
+            font-weight: bold;
+        }
+
+        /* Light Mode (Default) */
+        body {
+            background: linear-gradient(180deg, #FDF8E1, #DDEAFF);
+            color: #222;
+        }
+
+        .login-container {
+            background: rgba(255, 255, 255, 0.95);
+        }
+
+        /* Dark Mode */
+        .dark-mode {
+            background: linear-gradient(180deg, #0B1726, #122B46);
+            color: #f4f4f4;
+        }
+
+        .dark-mode .login-container {
+            background: rgba(50, 50, 50, 0.95);
+        }
+
+        .dark-mode .login-container h2{
+            color: white;
+        }
+
+        .dark-mode input {
+            background: #333;
+            color: #fff;
+            border: 2px solid #007bff;
+        }
+
+        .dark-mode input::placeholder {
+            color: #bbb;
+        }
+
+        .dark-mode .password-container i {
+            color: #bbb;
+        }
+
+        .dark-mode button {
+            background: linear-gradient(135deg, #004080, #0055b3);
+        }
+        .dark-mode footer {
+    color: #f4f4f4; /* Light text */
+}
+
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">Car Hive</div>
+        <nav>
+            <ul>
+                <li><a href="hm.html">Home</a></li>
+                <li><a href="car.html">Cars</a></li>
+                <li><a href="#">Services</a></li>
+                <li><a href="#">About Us</a></li>
+                <li><a href="contact.html">Contact Us</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="login-container">
+        <h2>Login to Your Account</h2>
+        <form id="loginForm">
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" id="email" required>
+            </div>
+            <div class="form-group password-container">
+                <label for="password">Password</label>
+                <input type="password" id="password" required>
+                <i class="fas fa-eye" id="togglePassword"></i>
+            </div>
+            <button type="submit">🚀 Login</button>
+        </form>
+        <p class="toggle-form">Don't have an account? <a href="signup.html">Sign Up</a></p>
+    </div>
+
+    <footer>
+        <p>&copy; 2025 Car Hive. All rights reserved.</p>
+    </footer>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const togglePassword = document.getElementById("togglePassword");
+            const passwordField = document.getElementById("password");
+
+            togglePassword.addEventListener("click", () => {
+                if (passwordField.type === "password") {
+                    passwordField.type = "text";
+                    togglePassword.classList.remove("fa-eye");
+                    togglePassword.classList.add("fa-eye-slash");
+                } else {
+                    passwordField.type = "password";
+                    togglePassword.classList.remove("fa-eye-slash");
+                    togglePassword.classList.add("fa-eye");
+                }
+            });
+        });
+    </script>
+    <script src="hm2.js"></script>
+</body>
+</html>

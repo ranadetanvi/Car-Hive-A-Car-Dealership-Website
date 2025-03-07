@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <style>
+        /* General Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background: linear-gradient(180deg, #FDF8E1, #DDEAFF);
+            color: #222;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+        }
+
+        /* Header */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 60px;
+            background: linear-gradient(135deg, #003D73, #002652);
+            color: white;
+            width: 100%;
+            font-size: 22px;
+            position: fixed;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .logo {
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: white;
+            font-weight: bold;
+            font-size: 20px;
+            transition: color 0.3s;
+        }
+
+        nav ul li a:hover {
+            color: #F4A900;
+        }
+
+        /* Form Container */
+        .form-container {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 30px;
+            border-radius: 12px;
+            width: 350px;
+            text-align: center;
+            margin-top: 120px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        h2 {
+            color: #003D73;
+            margin-bottom: 15px;
+        }
+
+        .form-group {
+            position: relative;
+            margin-bottom: 15px;
+            text-align: left;
+        }
+
+        label {
+            font-size: 16px;
+            font-weight: bold;
+            margin-bottom: 5px;
+            display: block;
+        }
+
+        input {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #003D73;
+            border-radius: 6px;
+            font-size: 16px;
+            background: #f8f9fa;
+        }
+
+        .password-wrapper {
+            position: relative;
+            width: 100%;
+        }
+
+        .password-wrapper input {
+            padding-right: 40px;
+        }
+
+        .toggle-password {
+            position: absolute;
+            right: 10px;
+            top: 67%;
+            transform: translateY(-50%);
+            cursor: pointer;
+            font-size: 18px;
+            color: #003D73;
+        }
+
+        .error {
+            color: red;
+            font-size: 14px;
+            margin-top: 5px;
+            display: none;
+        }
+
+        button {
+            width: 100%;
+            padding: 12px;
+            background: linear-gradient(135deg, #007bff, #00c6ff);
+            border: none;
+            color: white;
+            cursor: pointer;
+            border-radius: 6px;
+            font-size: 18px;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        button:hover {
+            background: linear-gradient(135deg, #0056b3, #0084ff);
+            transform: scale(1.05);
+        }
+
+        .toggle-form {
+            margin-top: 12px;
+            font-size: 14px;
+        }
+
+        .toggle-form a {
+            color: #007bff;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .toggle-form a:hover {
+            text-decoration: underline;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 10px;
+            color: black;
+            width: 100%;
+            margin-top: 30px;
+            font-weight: bold;
+        }
+
+        /* Dark Mode */
+        .dark-mode {
+            background: linear-gradient(180deg, #0B1726, #122B46);
+            color: #f4f4f4;
+        }
+
+        .dark-mode .form-container {
+            background: rgba(50, 50, 50, 0.95);
+            color: #fff;
+        }
+
+        .dark-mode .form-container h2{
+            color: white;
+        }
+
+        .dark-mode input {
+            background: #333;
+            color: white;
+            border-color: #007bff;
+        }
+
+        .dark-mode .toggle-password {
+            color: #bbb;
+        }
+
+        .dark-mode footer{
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">Car Hive</div>
+        <nav>
+            <ul>
+                <li><a href="hm.html">Home</a></li>
+                <li><a href="car.html">Cars</a></li>
+                <li><a href="#">Services</a></li>
+                <li><a href="#">About Us</a></li>
+                <li><a href="contact.html">Contact Us</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="form-container">
+        <h2>Sign Up</h2>
+        <form id="signup-form">
+            <div class="form-group">
+                <label>Full Name</label>
+                <input type="text" required>
+            </div>
+            <div class="form-group">
+                <label>Email</label>
+                <input type="email" required>
+            </div>
+            <div class="form-group password-wrapper">
+                <label>Password</label>
+                <input type="password" id="signup-password" required>
+                <i class="fa fa-eye toggle-password" onclick="togglePassword('signup-password', this)"></i>
+            </div>
+            <div class="form-group password-wrapper">
+                <label>Confirm Password</label>
+                <input type="password" id="confirm-password" required>
+                <i class="fa fa-eye toggle-password" onclick="togglePassword('confirm-password', this)"></i>
+                <p class="error" id="error-message">Passwords do not match</p>
+            </div>
+            <button type="submit">Sign Up</button>
+        </form>
+        <p class="toggle-form">Already have an account? <a href="login.html">Log in</a></p>
+    </div>
+
+    <footer>
+        <p>&copy; 2025 Car Hive. All rights reserved.</p>
+    </footer>
+
+    <script>
+        function togglePassword(id, icon) {
+            const passwordField = document.getElementById(id);
+            if (passwordField.type === "password") {
+                passwordField.type = "text";
+                icon.classList.remove("fa-eye");
+                icon.classList.add("fa-eye-slash");
+            } else {
+                passwordField.type = "password";
+                icon.classList.remove("fa-eye-slash");
+                icon.classList.add("fa-eye");
+            }
+        }
+
+        document.getElementById("signup-form").addEventListener("submit", function(event) {
+            const password = document.getElementById("signup-password").value;
+            const confirmPassword = document.getElementById("confirm-password").value;
+            const errorMessage = document.getElementById("error-message");
+
+            if (password !== confirmPassword) {
+                errorMessage.style.display = "block";
+                event.preventDefault();
+            } else {
+                errorMessage.style.display = "none";
+            }
+        });
+    </script>
+    <script src="hm2.js"></script>
+</body>
+</html>
