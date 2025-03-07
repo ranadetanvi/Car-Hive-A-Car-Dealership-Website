@@ -175,7 +175,11 @@
 .dark-mode .view-more {
     background: #F4A900;
 }
-
+.footer-bottom {
+    padding: 20px;
+    font-size: 18px;
+    margin-top: 20px;
+}
     </style>
 </head>
 <body>
@@ -187,7 +191,7 @@
                 <li><a href="car.html">Cars</a></li>
                 <li><a href="#">Services</a></li>
                 <li><a href="#">About Us</a></li>
-                <li><a href="cont.html">Contact Us</a></li>
+                <li><a href="contact.html">Contact Us</a></li>
             </ul>
         </nav>
     </header>
@@ -200,71 +204,95 @@
     <div class="popup-wrapper" id="popupWrapper">
         <img id="popupImage" src="">
     </div>
+    <div class="footer-bottom">
+        <p>&copy; 2025 Car Hive. All Rights Reserved.</p>
+    </div>
 
     <script>
-        const cars = Array.from({ length: 200 }, (_, i) => ({
-            name: `Car Model ${i + 1}`,
-            img: `images/car${i + 1}.jpg`
-        }));
+        // Car data with unique names, images, and links
+const carModels = [
+    { name: "BMW X5", link: "speci.html" },
+    { name: "Audi A6", link: "audi-a6-details.html" },
+    { name: "Mercedes C-Class", link: "mercedes-c-class-details.html" },
+    { name: "Tesla Model S", link: "tesla-model-s-details.html" },
+    { name: "Toyota Camry", link: "toyota-camry-details.html" },
+    { name: "Ferrari",link:"abc.html"}
+];
 
-        let popupTimeout;
+// Creating the car array with dynamic image paths
+const cars = carModels.map((car, i) => ({
+    name: car.name,
+    img: `images/car${i + 1}.jpg`, // Dynamically setting image path
+    link: car.link
+}));
 
-        function displayCars(carArray) {
-            const carList = document.getElementById("carList");
-            carList.innerHTML = "";
-            carArray.forEach(car => {
-                const carCard = document.createElement("div");
-                carCard.classList.add("car-card");
-                carCard.innerHTML = `
-                    <img src="${car.img}" alt="${car.name}">
-                    <h3>${car.name}</h3>
-                    <a href="#" class="view-more">View More</a>
-                `;
+// Function to display cars dynamically
+function displayCars(carArray) {
+    const carList = document.getElementById("carList");
+    carList.innerHTML = "";
+    carArray.forEach(car => {
+        const carCard = document.createElement("div");
+        carCard.classList.add("car-card");
+        carCard.innerHTML = `
+            <img src="${car.img}" alt="${car.name}" class="car-image">
+            <h3>${car.name}</h3>
+            <a href="${car.link}" class="view-more" target="_blank">View More</a>
+        `;
 
-                const imgElement = carCard.querySelector("img");
-                imgElement.addEventListener("click", (e) => showPopup(e, car.img));
-                imgElement.addEventListener("mouseenter", (e) => showPopup(e, car.img));
-                imgElement.addEventListener("mouseleave", hidePopup);
+        // Adding event listeners for the popup effect
+        carCard.querySelector(".car-image").addEventListener("mouseenter", (event) => {
+            showPopup(event, car.img);
+        });
 
-                carList.appendChild(carCard);
-            });
-        }
+        carCard.querySelector(".car-image").addEventListener("mouseleave", hidePopup);
 
-        function showPopup(event, imgSrc) {
-            const popup = document.getElementById("popupWrapper");
-            const imgElement = document.getElementById("popupImage");
-            imgElement.src = imgSrc;
+        carList.appendChild(carCard);
+    });
+}
 
-            // Get the image position and size
-            const imgRect = event.target.getBoundingClientRect();
+// Function to show the image popup effect
+function showPopup(event, imgSrc) {
+    const popup = document.getElementById("popupWrapper");
+    const imgElement = document.getElementById("popupImage");
 
-            // Position the popup exactly at the same spot
-            popup.style.left = `${imgRect.left}px`;
-            popup.style.top = `${imgRect.top + window.scrollY - 20}px`;  // Slightly above the image
-            popup.style.width = `${imgRect.width}px`;
-            popup.style.height = `${imgRect.height}px`;
+    imgElement.src = imgSrc;
 
-            // Slightly enlarge the popup image
-            imgElement.style.transform = "scale(1.1)";
+    // Get the image position and size
+    const imgRect = event.target.getBoundingClientRect();
 
-            // Show popup with a smooth transition
-            popup.classList.add("active");
-            document.getElementById("mainContent").classList.add("blur");
+    // Position the popup exactly at the same spot
+    popup.style.left = `${imgRect.left}px`;
+    popup.style.top = `${imgRect.top + window.scrollY - 20}px`; // Slightly above the image
+    popup.style.width = `${imgRect.width}px`;
+    popup.style.height = `${imgRect.height}px`;
 
-            // Set a timeout to hide the popup after 1.5 seconds
-            clearTimeout(popupTimeout);
-            popupTimeout = setTimeout(() => {
-                popup.classList.remove("active");
-                document.getElementById("mainContent").classList.remove("blur");
-            }, 1500);  // Hide popup after 1.5 seconds
-        }
+    // Slightly enlarge the popup image
+    imgElement.style.transform = "scale(1.1)";
 
-        function hidePopup() {
-            // Do nothing here, the popup is hidden via the timeout
-        }
+    // Show popup with a smooth transition
+    popup.classList.add("active");
+    document.getElementById("mainContent").classList.add("blur");
 
-        displayCars(cars);
-    </script>
+    // Set a timeout to hide the popup after 1.5 seconds
+    setTimeout(() => {
+        popup.classList.remove("active");
+        document.getElementById("mainContent").classList.remove("blur");
+    }, 1500); // Hide popup after 1.5 seconds
+}
+
+// Function to hide the popup (not needed, handled via timeout)
+function hidePopup() {
+    // Do nothing here, the popup is hidden via timeout
+}
+
+// Load and display cars when the page loads
+displayCars(cars);
+setTimeout(() => {
+    popup.classList.remove("active");
+    document.getElementById("mainContent").classList.remove("blur");
+}, 2000); // Hide popup after 1.5 seconds
+
+    </script>      
     <script src="hm2.js" defer></script>
 </body>
 </html>
