@@ -3,366 +3,302 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Car Specifications | Car Hive</title>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+    <title>Car Specification - Car Hive</title>
     <style>
         /* General Styles */
-       
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Poppins', sans-serif;
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: white;
+            color: black;
+            padding-top: 80px;
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 40px;
+            background: linear-gradient(135deg, #003D73, #002652);
+            color: white;
+            position: fixed;
+            width: 100%;
+            height: 70px;
+            top: 0;
+            z-index: 1000;
+            font-size: 20px;
+            box-sizing: border-box;
+        }
+
+        .logo {
+            font-size: 20px;
+            font-weight: bold;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 15px;
+            padding: 0;
+            margin: 0;
+            flex-wrap: wrap; 
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: white;
+            font-weight: bold;
+            font-size: 20px;
+            transition: color 0.3s, text-shadow 0.3s;
+        }
+
+        nav ul li a:hover {
+            color: #F4A900;
+            text-shadow: 0 0 12px rgba(244, 169, 0, 0.8);
+        }
+
+        /* Main Container */
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            padding: 20px;
+            flex-wrap: wrap;
+            width: 85%;
+            margin: auto;
+            margin-top: 150px; 
+        }
+
+        /* Left Side */
+        .left {
+            flex: 1;
+            min-width: 300px;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .right {
+            flex: 1;
+            text-align: left;
+            border-radius: 10px;
+            align-items: center;
+            padding: 50px;
+        }
+
+        /* Tabs */
+        .tab-container {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+
+        .tab {
+            padding: 10px 20px;
+            cursor: pointer;
+            background: orange;
+            color: black;
+            border-radius: 5px;
+            font-weight: bold;
+        }
+
+        .tab.active {
+            background: darkblue;
+            color: white;
+        }
+
+        /* Image Slider */
+        .slider-container {
+            position: relative;
+            width: 300px;
+            height: 300px;
+            overflow: hidden;
+            margin: auto;
+            cursor: pointer;
+        }
+
+        .zoom-container {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            border-radius: 10px;
+        }
+
+        .zoom-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.2s ease-out;
+        }
+
+        /* Slider Navigation */
+        .slider-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 24px;
+            background: rgba(0, 0, 0, 0.5);
+            color: white;
+            border: none;
+            padding: 8px 12px;
+            cursor: pointer;
+            user-select: none;
+            z-index: 2;
+        }
+
+        .prev-btn { left: 5px; }
+        .next-btn { right: 5px; }
+
+        /* Popup */
+        .popup {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            z-index: 1000;
+        }
+
+        .popup-content {
+            position: relative;
+            max-width: 90%;
+            max-height: 90%;
+        }
+
+        .popup img {
+            width: 500px;
+            height: auto;
+            border-radius: 10px;
+        }
+
+        .close {
+            position: absolute;
+            top: 10px;
+            right: 20px;
+            font-size: 30px;
+            color: white;
+            cursor: pointer;
+        }
+
+        /* Popup Navigation */
+        .popup-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 40px;
+            color: white;
+            cursor: pointer;
+            background: rgba(0, 0, 0, 0.5);
+            padding: 10px;
+            user-select: none;
+        }
+
+        .popup-prev { left: 10px; }
+        .popup-next { right: 10px; }
+
+        .container {
+            width: 85%;
+            margin: auto;
+        }
+        .carousel {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            margin-top: 30px;
+        }
+        .carousel-wrapper {
+            display: flex;
+            gap: 20px;
+            overflow-x: auto;
+            scroll-behavior: smooth;
+            width: 75%;
+            padding: 10px;
+            scrollbar-width: none;
+        }
+        .carousel-wrapper::-webkit-scrollbar {
+            display: none;
+        }
+        .card {
+            min-width: 320px;
+            max-width: 340px;
+            background: white;
+            border-radius: 12px;
+            text-align: left;
+            box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease-in-out;
+            padding: 20px;
+        }
+        .card:hover {
+            transform: translateY(-5px);
+        }
+        .card h3 {
+            background: #003D73;
+            color: white;
+            padding: 12px;
+            border-radius: 6px;
+            text-align: center;
+            font-size: 20px;
+            margin-bottom: 15px;
+        }
+        .card ul {
+            list-style: none;
+            padding: 0;
+        }
+        .card li {
+            padding: 10px;
+            border-bottom: 1px solid #ddd;
+            font-size: 16px;
+        }
+        .card li:last-child {
+            border-bottom: none;
+        }
+        .arrow {
+            font-size: 30px;
+            cursor: pointer;
+            color: #003D73;
+            border: none;
+            background: none;  /* No background */
+            position: absolute;
+            transition: 0.3s;
+        }
+        .arrow:hover {
+            transform: scale(1.2);
+            color: #00254D;
+        }
+        .arrow-left {
+            left: 3%;
+        }
+        .arrow-right {
+            right: 3%;
+        }
+        p {
+    font-size: 18px; /* Adjust the size as needed */
+    line-height: 1.6;
 }
 
-body {
-    background: #ffffff;
-    color: black;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: flex-start;
-    min-height: 100vh;
-    font-size: 16px;
-    padding-top: 80px;
+.dark-mode header {
+    background: #1a1a1a;
 }
 
-/* Header */
-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 20px 40px;
-    background: #003D73;
-    width: 100%;
-    position: fixed;
-    top: 0;
-    z-index: 1000;
-}
 
-.logo {
-    font-size: 28px;
-    font-weight: bold;
-    color: #F8B400;
-}
-
-nav ul {
-    display: flex;
-    list-style: none;
-    gap: 30px;
-}
-
-nav ul li a {
-    text-decoration: none;
-    color: white;
-    font-size: 20px;
-    font-weight: bold;
-}
-
-nav ul li a:hover {
-    color: #F8B400;
-}
-
-/* Main Container */
-.container {
-    display: flex;
-    justify-content: center;
-    gap: 40px;
-    width: 80%;
-    margin-top: 40px;
-    flex-wrap: wrap;
-    align-items: center;
-}
-
-/* Image Container */
-.image-container {
-    position: relative;
-    width: 400px;
-    height: 300px;
-    overflow: hidden;
-    border-radius: 10px;
-    cursor: zoom-in;
-    border: 3px solid #003D73;
-}
-
-.zoom-image {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: transform 0.2s ease-out, transform-origin 0.2s ease-out;
-}
-
-/* Slider Buttons */
-.slider-btn, .popup-slider-btn {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    background: rgba(0, 0, 0, 0.5);
-    color: white;
-    border: none;
-    padding: 10px;
-    cursor: pointer;
-    font-size: 20px;
-    z-index: 2;
-    border-radius: 5px;
-}
-
-.slider-btn:hover, .popup-slider-btn:hover {
-    background: rgba(0, 0, 0, 0.8);
-}
-
-#prev, #popup-prev { left: 5px; }
-#next, #popup-next { right: 5px; }
-
-/* Popup Modal */
-.popup-container {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.6);
-    display: none;
-    justify-content: center;
-    align-items: center;
-    z-index: 2000;
-}
-
-.popup-content {
-    position: relative;
-    width: 70%;
-    max-width: 600px;
-}
-
-.popup-content img {
-    width: 100%;
-    border-radius: 10px;
-}
-
-.close-btn {
-    position: absolute;
-    top: 10px;
-    right: 15px;
-    background: none;
-    color: white;
-    font-size: 30px;
-    border: none;
-    cursor: pointer;
-}
-
-/* Car Details */
-.car-details {
-    width: 50%;
-    max-width: 800px;
-    background: white;
-    padding: 18px;
-    border-radius: 10px;
-    text-align: left;
-}
-
-.car-details h2 {
-    color: #d2dee8;
-    font-size: 24px;
-    margin-bottom: 10px;
-}
-
-.car-details p {
-    font-size: 20px;
-}
-.car-details h2{
-    padding-top: 20px;
-}
-
-/* Test Drive Button */
-.test-drive-btn {
-    display: inline-block;
-    margin-top: 15px;
-    padding: 12px 20px;
-    font-size: 18px;
-    font-weight: bold;
-    color: white;
-    background-color: #F8B400;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background 0.3s ease;
-}
-
-.test-drive-btn:hover {
-    background-color: #D99800;
-}
-
-/* Key Features Section */
-.key-features {
-    margin-top: 20px;
-}
-
-.key-features h2 {
-    color: #003D73;
-    font-size: 24px;
-    margin-bottom: 15px;
-}
-
-.features-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 15px;
-    list-style: none;
-    padding: 15px;
-    font-size: 18px;
-}
-
-.key-features ul li {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-}
-
-.key-features ul li i {
-    color: #003D73;
-    font-size: 22px;
-}
-
-/* Footer */
-footer {
-    color: black;
-    padding: 50px 0;
-    text-align: center;
-    width: 100%;
-    margin-top: 40px;
-    background: none;
-}
-
-.footer-container {
-    display: flex;
-    justify-content: space-around;
-    flex-wrap: wrap;
-    padding: 40px;
-    max-width: 1200px;
-    margin: auto;
-}
-
-.footer-container div {
-    flex: 1;
-    margin: 20px;
-    min-width: 250px;
-}
-
-.footer-container h3, .footer-container h4 {
-    color: #003D73;
-    font-size: 22px;
-}
-
-.footer-container p, .footer-container ul li {
-    font-size: 18px;
-}
-
-.footer-links ul {
-    list-style: none;
-    padding: 0;
-}
-
-.footer-links ul li {
-    margin: 10px 0;
-}
-
-.footer-links ul li a {
-    color: black;
-    text-decoration: none;
-    font-size: 18px;
-}
-
-.footer-links ul li a:hover {
-    color: #F8B400;
-}
-
-.footer-bottom {
-    padding: 20px;
-    font-size: 18px;
-    margin-top: 20px;
-}
-
-/* Light Mode (Default) */
-body {
-    background-color: #ffffff;
-    color: black;
-}
-
-/* Dark Mode */
-body.dark-mode {
-    background-color: #121212;
-    color: white;
-}
-
-/* Header */
-body.dark-mode header {
-    background-color: #1e1e1e;
-}
-
-.dark-mode nav ul li a:hover {
-    color: #F4A900;
-}
-
-/* Car Details Section */
-body.dark-mode .car-details {
-    background: #2b2b2b;
-    color: white;
-}
-
-/* Key Features Section */
-body.dark-mode .key-features h2,
-body.dark-mode .key-features ul li {
-    color: white;
-}
-
-/* Footer */
-body.dark-mode footer,
-body.dark-mode .footer-container h3,
-body.dark-mode .footer-container h4,
-body.dark-mode .footer-container p,
-body.dark-mode .footer-container ul li a,
-body.dark-mode .footer-bottom {
-    color: white;
-}
-
-/* Navigation Links */
-body.dark-mode nav ul li a {
-    color: white;
-}
-
-/* Buttons */
-body.dark-mode .test-drive-btn {
-    background-color: #F8B400;
-    color: black;
-}
-
-/* Car Features Icons */
-body.dark-mode .key-features ul li i {
-    color: white;
-}
-
-/* Car Cards */
-body.dark-mode .car-card {
-    background: #2b2b2b;
-    border-color: white;
-    color: white;
-}
-
-body.dark-mode .car-card img {
-    filter: brightness(0.9);
-}
-   
     </style>
 </head>
 <body>
 
-    <!-- Header -->
     <header>
         <div class="logo">Car Hive</div>
         <nav>
             <ul>
                 <li><a href="hm.html">Home</a></li>
-                <li><a href="cars.html">Cars</a></li>
+                <li><a href="car.html">Cars</a></li>
                 <li><a href="#">Services</a></li>
                 <li><a href="#">About Us</a></li>
                 <li><a href="contact.html">Contact Us</a></li>
@@ -370,105 +306,122 @@ body.dark-mode .car-card img {
         </nav>
     </header>
 
-    <!-- Main Container -->
-    <div class="container">
-        <div class="image-container" id="zoom-container">
-            <img src="images/car1.jpg" alt="Car Image" class="zoom-image" id="main-image">
-            <button class="slider-btn" id="prev">&#10094;</button>
-            <button class="slider-btn" id="next">&#10095;</button>
+<div class="container">
+    <div class="left">
+        <div class="tab-container">
+            <div class="tab active" onclick="showGallery('interior')">Interior</div>
+            <div class="tab" onclick="showGallery('exterior')">Exterior</div>
         </div>
-    
 
-    <!-- Popup Modal -->
-    <div class="popup-container" id="popup">
-        <div class="popup-content">
-            <button class="close-btn" id="close-popup">&times;</button>
-            <button class="popup-slider-btn" id="popup-prev">&#10094;</button>
-            <img src="images/car1.jpg" id="popup-image">
-            <button class="popup-slider-btn" id="popup-next">&#10095;</button>
+        <div class="slider-container" onclick="openPopup()">
+            <button class="slider-btn prev-btn" onclick="prevSlide(event)">&#10094;</button>
+            <div class="zoom-container">
+                <img id="displayImage" src="images/interior1.jpg" alt="Car Image">
+            </div>
+            <button class="slider-btn next-btn" onclick="nextSlide(event)">&#10095;</button>
         </div>
     </div>
-    <div class="car-details">
-        <h2>Car Name</h2>
-        <p>
-            The <strong>XYZ Model</strong> is a stunning vehicle that combines power and elegance. 
-            It delivers an impressive <strong>15 km/l</strong> mileage and runs on <strong>petrol</strong> 
-            fuel. The car features a smooth <strong>automatic transmission</strong>, making driving effortless. 
-            this car offers premium performance and 
-            outstanding comfort.
+
+    <div class="right">
+        <h2 class="car-title">Toyota Supra</h2>
+        <p class="price">Price: ₹55,00,000</p>
+        <p class="car-description">
+            The Toyota Supra is a legendary sports car, known for its stunning design and high-performance engineering.The Toyota Supra is a legendary sports car, known for its stunning design and high-performance engineering.
+            The Toyota Supra is a legendary sports car, known for its stunning design and high-performance engineering.The Toyota Supra is a legendary sports car, known for its stunning design and high-performance engineering.The Toyota Supra is a legendary sports car, known for its stunning design and high-performance engineering.The Toyota Supra is a legendary sports car, known for its stunning design and high-performance engineering.The Toyota Supra is a legendary sports car, known for its stunning design and high-performance engineering.The Toyota Supra is a legendary sports car, known for its stunning design and high-performance engineering.
         </p>
-        <h2>$45000-$10000</h2>
-        <a href="login.html">
-        <button class="test-drive-btn" >Book a Test Drive </button>
-        </a>
+        <button class="test-drive-btn">Book a Test Drive</button>
     </div>
-    </div>
-
-    <!-- Key Features Section -->
-<div class="key-features">
-    <h2>Key Features</h2>
-    <ul class="features-grid">
-        <li><i class="fas fa-cogs"></i> <strong>Engine:</strong> 2.0L Turbocharged Petrol</li>
-        <li><i class="fas fa-tachometer-alt"></i> <strong>Transmission:</strong> 8-speed Automatic</li>
-        <li><i class="fas fa-gas-pump"></i> <strong>Mileage:</strong> 15 km/l</li>
-        <li><i class="fas fa-oil-can"></i> <strong>Fuel Type:</strong> Petrol</li>
-        <li><i class="fas fa-users"></i> <strong>Seating Capacity:</strong> 5</li>
-        <li><i class="fas fa-tv"></i> <strong>Infotainment System:</strong> 10-inch Touchscreen</li>
-        <li><i class="fas fa-shield-alt"></i> <strong>Safety Rating:</strong> 5-Star</li>
-        <li><i class="fas fa-sun"></i> <strong>Sunroof:</strong> Panoramic Sunroof</li>
-        <li><i class="fas fa-car-crash"></i> <strong>Airbags:</strong> 6 Airbags for Safety</li>
-        <li><i class="fas fa-car"></i> <strong>Parking Assist:</strong> 360° Camera with Sensors</li>
-    </ul>
-</div>
-<div class="footer-bottom">
-    <p>&copy; 2025 Car Hive. All Rights Reserved.</p>
 </div>
 
-    <script>
-        const images = ["images/car1.jpg", "images/car2.jpg", "images/car3.jpg"];
-        let currentIndex = 0;
+<!-- Popup with Slider -->
+<div class="popup" id="imagePopup">
+    <div class="popup-content">
+        <span class="close" onclick="closePopup()">&times;</span>
+        <span class="popup-btn popup-prev" onclick="prevImage()">&#10094;</span>
+        <img id="popupImage" src="images/interior1.jpg" alt="Popup Image">
+        <span class="popup-btn popup-next" onclick="nextImage()">&#10095;</span>
+    </div>
+</div>
 
-        const mainImage = document.getElementById("main-image");
-        const popupImage = document.getElementById("popup-image");
-        const popup = document.getElementById("popup");
+<div class="container">
+    <h2 style="color: #003D73; margin-bottom: 20px;">Car Variants</h2>
+    <div class="carousel">
+        <button class="arrow arrow-left"><i class="fas fa-chevron-left"></i></button>
+        <div class="carousel-wrapper" id="carouselWrapper">
+            <!-- Cards will be dynamically inserted -->
+        </div>
+        <button class="arrow arrow-right"><i class="fas fa-chevron-right"></i></button>
+    </div>
+</div>
 
-        function updateImage(index) {
-            mainImage.src = images[index];
-            popupImage.src = images[index];
+<script>
+    let interiorImages = ["images/interior1.jpg", "images/interior2.jpg"];
+    let exteriorImages = ["images/exterior1.jpg", "images/exterior2.jpg"];
+    let currentImages = interiorImages;
+    let currentIndex = 0;
+
+    function showGallery(type) {
+        document.querySelectorAll('.tab').forEach(tab => tab.classList.remove('active'));
+        currentImages = type === 'interior' ? interiorImages : exteriorImages;
+        document.querySelector(`.tab:nth-child(${type === 'interior' ? 1 : 2})`).classList.add('active');
+        currentIndex = 0;
+        updateImage();
+    }
+
+    function updateImage() {
+        document.getElementById("displayImage").src = currentImages[currentIndex];
+        document.getElementById("popupImage").src = currentImages[currentIndex];
+    }
+
+    function prevSlide(event) { event.stopPropagation(); currentIndex = (currentIndex - 1 + currentImages.length) % currentImages.length; updateImage(); }
+    function nextSlide(event) { event.stopPropagation(); currentIndex = (currentIndex + 1) % currentImages.length; updateImage(); }
+    function openPopup() { document.getElementById("imagePopup").style.display = "flex"; }
+    function closePopup() { document.getElementById("imagePopup").style.display = "none"; }
+    function prevImage() { prevSlide(new Event("")); }
+    function nextImage() { nextSlide(new Event("")); }
+
+    // Zoom Effect on Hover
+    document.getElementById("displayImage").addEventListener("mousemove", function (e) {
+        let x = e.offsetX / this.offsetWidth * 100;
+        let y = e.offsetY / this.offsetHeight * 100;
+        this.style.transformOrigin = `${x}% ${y}%`;
+        this.style.transform = "scale(1.5)";
+    });
+
+    document.getElementById("displayImage").addEventListener("mouseleave", function () {
+        this.style.transform = "scale(1)";
+    });
+
+    const variants = {
+            "Base Model": ["Engine: 1.2L Petrol", "Transmission: Manual", "Mileage: 18 km/l", "Airbags: 2", "Sunroof: No"],
+            "Mid Model": ["Engine: 1.5L Petrol", "Transmission: Automatic", "Mileage: 16 km/l", "Airbags: 4", "Sunroof: Yes"],
+            "Top Model": ["Engine: 2.0L Turbo Petrol", "Transmission: 8-Speed Auto", "Mileage: 14 km/l", "Airbags: 6", "Sunroof: Panoramic"],
+            "Special Edition": ["Engine: 2.0L Turbo Petrol", "Transmission: 8-Speed Auto", "Mileage: 14 km/l", "Airbags: 6", "Sunroof: Panoramic"]
+        };
+
+        function loadVariants() {
+            const wrapper = document.getElementById("carouselWrapper");
+            wrapper.innerHTML = "";
+            Object.keys(variants).forEach(variant => {
+                const card = document.createElement("div");
+                card.classList.add("card");
+                card.innerHTML = `<h3>${variant}</h3><ul>` +
+                    variants[variant].map(feature => `<li>${feature}</li>`).join("") +
+                    `</ul>`;
+                wrapper.appendChild(card);
+            });
         }
 
-        function changeImage(direction) {
-            currentIndex = (currentIndex + direction + images.length) % images.length;
-            updateImage(currentIndex);
-        }
-
-        document.getElementById("prev").addEventListener("click", () => changeImage(-1));
-        document.getElementById("next").addEventListener("click", () => changeImage(1));
-
-        document.getElementById("popup-prev").addEventListener("click", () => changeImage(-1));
-        document.getElementById("popup-next").addEventListener("click", () => changeImage(1));
-
-        mainImage.addEventListener("click", () => popup.style.display = "flex");
-        document.getElementById("close-popup").addEventListener("click", () => popup.style.display = "none");
-
-        document.querySelector(".image-container").addEventListener("mousemove", function(e) {
-            const { left, top, width, height } = this.getBoundingClientRect();
-            const x = ((e.clientX - left) / width) * 100;
-            const y = ((e.clientY - top) / height) * 100;
-            mainImage.style.transformOrigin = `${x}% ${y}%`;
-            mainImage.style.transform = "scale(1.8)";
+        document.querySelector(".arrow-left").addEventListener("click", () => {
+            document.getElementById("carouselWrapper").scrollBy({ left: -350, behavior: "smooth" });
         });
 
-        document.querySelector(".image-container").addEventListener("mouseleave", () => {
-            mainImage.style.transform = "scale(1)";
+        document.querySelector(".arrow-right").addEventListener("click", () => {
+            document.getElementById("carouselWrapper").scrollBy({ left: 350, behavior: "smooth" });
         });
 
-        document.querySelector(".test-drive-btn").addEventListener("click", function() {
-            alert("Redirecting to the Test Drive Booking Page!");
-        });
-
-    </script>
-    <script src="hm2.js"></script>
+        window.onload = loadVariants;
+</script>
 
 </body>
 </html>
