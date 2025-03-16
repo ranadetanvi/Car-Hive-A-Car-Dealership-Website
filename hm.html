@@ -10,25 +10,72 @@
 
     <header>
         <div class="logo">
-            <h1>Car Hive</h1>
+            <img src="images/logo.png" alt="Car Hive Logo">
         </div>
+        
         <nav>
             <ul>
                 <li><a href="hm.html">Home</a></li>
                 <li><a href="car.html">Cars</a></li>
                 <li><a href="#">Services</a></li>
                 <li><a href="#">About Us</a></li>
-                <li><a href="cont.html">Contact Us</a></li>
+                <li><a href="contact.html">Contact Us</a></li>
             </ul>
         </nav>
         <div id="dark-mode-toggle" class="toggle-switch"></div>
     </header>
+    <div class="search-container">
+        <input type="text" id="search-bar" placeholder="Search cars..." onkeyup="searchCars()">
+        <div class="custom-dropdown">
+            <div class="selected-option">
+                <span id="selected-brand">All Brands</span>
+            </div>
+            <ul class="dropdown-options">
+                <li data-value="All Brands">
+                        All Brands
+                </li>
+                <li data-value="Ford">
+                    <img src="image/1737406416669.jpg" alt="Ford"> Ford
+                </li>
+                <li data-value="Tesla">
+                    <img src="image/1737406516476.jpg" alt="Tesla"> Tesla
+                </li>
+                <li data-value="BMW">
+                    <img src="image/car4.jpg" alt="BMW"> BMW
+                </li>
+                <li data-value="Audi">
+                    <img src="images/audi-logo.png" alt="Audi"> Audi
+                </li>
+            </ul>
+        </div>
+        <input type="hidden" id="brand-filter" name="brand">
+        
+        <select id="price-filter">
+            <option value="">All Prices</option>
+            <option value="30000">Up to $30,000</option>
+            <option value="50000">Up to $50,000</option>
+            <option value="75000">Up to $75,000</option>
+        </select>
+    
+        <select id="fuel-filter">
+            <option value="">All Fuel Types</option>
+            <option value="Petrol">Petrol</option>
+            <option value="Diesel">Diesel</option>
+            <option value="Electric">Electric</option>
+        </select>
+    
+        <button onclick="searchCars()">Search</button>
+    </div>
+    
+    <div id="car-results">
+       
+    </div>
 
     <section class="hero">
         <div class="hero-content">
             <h2>Find Your Dream Car Today</h2>
             <p>Explore the best deals and latest models at Car Hive</p>
-            <a href="#" class="btn">Browse Cars</a>
+            <a href="car.html" class="btn">Browse Cars</a>
         </div>
         <img src="your-car-image.jpg" alt="Car Image" class="hero-image">
     </section>
@@ -51,14 +98,11 @@
 
     <footer>
         <p>&copy; 2025 Car Hive. All rights reserved.</p>
-        <div class="social-icons">
-            <a href="#">🔵 Facebook</a>
-            <a href="#">🟣 Instagram</a>
-            <a href="#">🔷 Twitter</a>
-        </div>
     </footer>
 
     <script src="hm2.js"></script>
+    <script src="search.js"></script>
+    <script src="script.js"></script>
 
 </body>
 </html>
