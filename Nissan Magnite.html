@@ -87,6 +87,27 @@
             padding: 50px;
         }
 
+               .color-options {
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+    gap: 10px;
+}
+
+.color-circle {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    display: inline-block;
+    cursor: pointer;
+    border: 2px solid white;
+}
+
+.popup img {
+    width: 400px;
+    height: auto;
+    border-radius: 10px;
+}
         /* Tabs */
         .tab-container {
             display: flex;
@@ -184,7 +205,7 @@
             top: 10px;
             right: 20px;
             font-size: 30px;
-            color: white;
+            color: black;
             cursor: pointer;
         }
 
@@ -383,6 +404,7 @@
         <div class="tab-container">
             <div class="tab active" onclick="showGallery('interior')">Interior</div>
             <div class="tab" onclick="showGallery('exterior')">Exterior</div>
+            <div class="tab" onclick="showColors()">View Colors</div>
         </div>
 
         <div class="slider-container" onclick="openPopup()">
@@ -413,6 +435,18 @@
         <span class="popup-btn popup-prev" onclick="prevImage()">&#10094;</span>
         <img id="popupImage" src="images/interior1.jpg" alt="Popup Image">
         <span class="popup-btn popup-next" onclick="nextImage()">&#10095;</span>
+    </div>
+</div>
+
+<div class="popup" id="colorPopup">
+    <div class="popup-content">
+        <span class="close" onclick="closeColorPopup()">&times;</span>
+        <img id="colorImage" src="images/car-red.jpg" alt="Car Color Image">
+        <div class="color-options">
+            <span class="color-circle" style="background: red;" onclick="changeColor('images/car-red.jpg')"></span>
+            <span class="color-circle" style="background: blue;" onclick="changeColor('images/car-blue.jpg')"></span>
+            <span class="color-circle" style="background: black;" onclick="changeColor('images/color3.jpg')"></span>
+        </div>
     </div>
 </div>
 
@@ -477,7 +511,18 @@
             Object.keys(variants).forEach(variant => {
                 const card = document.createElement("div");
                 card.classList.add("card");
-                card.innerHTML = `<h3>${variant}</h3><ul>` +
+                card.innerHTML = `<h3>${variant}</h3><ul>` +       function showColors() {
+    document.getElementById("colorPopup").style.display = "flex";
+}
+
+function closeColorPopup() {
+    document.getElementById("colorPopup").style.display = "none";
+}
+
+function changeColor(imageSrc) {
+    document.getElementById("colorImage").src = imageSrc;
+    document.getElementById("displayImage").src = imageSrc;
+}
                     variants[variant].map(feature => `<li>${feature}</li>`).join("") +
                     `</ul>`;
                 wrapper.appendChild(card);
@@ -492,6 +537,7 @@
             document.getElementById("carouselWrapper").scrollBy({ left: 350, behavior: "smooth" });
         });
 
+        
         window.onload = loadVariants;
 </script>
 <script src="hm2.js"></script>
