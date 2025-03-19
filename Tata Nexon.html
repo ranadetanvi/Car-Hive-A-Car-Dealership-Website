@@ -87,6 +87,27 @@
             padding: 50px;
         }
 
+               .color-options {
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+    gap: 10px;
+}
+
+.color-circle {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    display: inline-block;
+    cursor: pointer;
+    border: 2px solid white;
+}
+
+.popup img {
+    width: 400px;
+    height: auto;
+    border-radius: 10px;
+}
         /* Tabs */
         .tab-container {
             display: flex;
@@ -184,7 +205,7 @@
             top: 10px;
             right: 20px;
             font-size: 30px;
-            color: white;
+            color: black;
             cursor: pointer;
         }
 
@@ -383,6 +404,7 @@
         <div class="tab-container">
             <div class="tab active" onclick="showGallery('interior')">Interior</div>
             <div class="tab" onclick="showGallery('exterior')">Exterior</div>
+            <div class="tab" onclick="showColors()">View Colors</div>
         </div>
 
         <div class="slider-container" onclick="openPopup()">
@@ -409,7 +431,17 @@
         </a>
     </div>
 </div>
-
+<div class="popup" id="colorPopup">
+    <div class="popup-content">
+        <span class="close" onclick="closeColorPopup()">&times;</span>
+        <img id="colorImage" src="images/car-red.jpg" alt="Car Color Image">
+        <div class="color-options">
+            <span class="color-circle" style="background: red;" onclick="changeColor('images/car-red.jpg')"></span>
+            <span class="color-circle" style="background: blue;" onclick="changeColor('images/car-blue.jpg')"></span>
+            <span class="color-circle" style="background: black;" onclick="changeColor('images/color3.jpg')"></span>
+        </div>
+    </div>
+</div>
 <!-- Popup with Slider -->
 <div class="popup" id="imagePopup">
     <div class="popup-content">
@@ -419,6 +451,7 @@
         <span class="popup-btn popup-next" onclick="nextImage()">&#10095;</span>
     </div>
 </div>
+
 
 <div class="container">
     <h2 style="color: #003D73; margin-bottom: 20px;">Car Variants</h2>
@@ -496,6 +529,18 @@
             document.getElementById("carouselWrapper").scrollBy({ left: 350, behavior: "smooth" });
         });
 
+               function showColors() {
+    document.getElementById("colorPopup").style.display = "flex";
+}
+
+function closeColorPopup() {
+    document.getElementById("colorPopup").style.display = "none";
+}
+
+function changeColor(imageSrc) {
+    document.getElementById("colorImage").src = imageSrc;
+    document.getElementById("displayImage").src = imageSrc;
+}
         window.onload = loadVariants;
 </script>
 <script src="hm2.js"></script>
