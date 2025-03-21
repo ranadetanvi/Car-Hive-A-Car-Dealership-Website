@@ -88,26 +88,26 @@
         }
 
         .color-options {
-    display: flex;
-    justify-content: center;
-    margin-top: 10px;
-    gap: 10px;
-}
+            display: flex;
+            justify-content: center;
+            margin-top: 10px;
+            gap: 10px;
+        }
 
-.color-circle {
-    width: 30px;
-    height: 30px;
-    border-radius: 50%;
-    display: inline-block;
-    cursor: pointer;
-    border: 2px solid white;
-}
+        .color-circle {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: inline-block;
+            cursor: pointer;
+            border: 2px solid white;
+        }
 
-.popup img {
-    width: 400px;
-    height: auto;
-    border-radius: 10px;
-}
+        .popup img {
+            width: 400px;
+            height: auto;
+            border-radius: 10px;
+        }
 
         /* Tabs */
         .tab-container {
@@ -251,24 +251,24 @@
         }
 
         .test-drive-btn {
-    background: #F4A900; /* Orange color */
-    color: black;
-    font-size: 18px;
-    font-weight: bold;
-    padding: 12px 20px;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: all 0.3s ease-in-out;
-    display: inline-block;
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
-}
+            background: #F4A900; /* Orange color */
+            color: black;
+            font-size: 18px;
+            font-weight: bold;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease-in-out;
+            display: inline-block;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+        }
 
-.test-drive-btn:hover {
-    background: #d48800; /* Darker orange on hover */
-    transform: scale(1.05);
-    box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.3);
-}
+        .test-drive-btn:hover {
+            background: #d48800; /* Darker orange on hover */
+            transform: scale(1.05);
+            box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.3);
+        }
 
         .card {
             min-width: 320px;
@@ -324,63 +324,63 @@
             right: 3%;
         }
         p {
-    font-size: 18px; /* Adjust the size as needed */
-    line-height: 1.6;
-}
+            font-size: 18px; /* Adjust the size as needed */
+            line-height: 1.6;
+        }
 
-.dark-mode header {
-    background: #1a1a1a;
-}
+        .dark-mode header {
+            background: #1a1a1a;
+        }
 
-.dark-mode {
-    background-color: black;
-    color: white;
-}
+        .dark-mode {
+            background-color: black;
+            color: white;
+        }
 
-.dark-mode .card {
-    background: #222;
-    color: white;
-    box-shadow: 0px 5px 15px rgba(255, 255, 255, 0.1);
-}
+        .dark-mode .card {
+            background: #222;
+            color: white;
+            box-shadow: 0px 5px 15px rgba(255, 255, 255, 0.1);
+        }
 
-.dark-mode .test-drive-btn {
-    background: #F4A900;
-    color: black;
-}
+        .dark-mode .test-drive-btn {
+            background: #F4A900;
+            color: black;
+        }
 
-.dark-mode .test-drive-btn:hover {
-    background: #d48800;
-}
+        .dark-mode .test-drive-btn:hover {
+            background: #d48800;
+        }
 
-.dark-mode .car-title,
-.dark-mode h2 {
-    color: #F4A900;
-}
+        .dark-mode .car-title,
+        .dark-mode h2 {
+            color: #F4A900;
+        }
 
-.dark-mode .slider-container,
-.dark-mode .zoom-container {
-    background: #222;
-}
+        .dark-mode .slider-container,
+        .dark-mode .zoom-container {
+            background: #222;
+        }
 
-.dark-mode nav ul li a {
-    color: white;
-}
+        .dark-mode nav ul li a {
+            color: white;
+        }
 
-.dark-mode nav ul li a:hover {
-    color: #F4A900;
-}
+        .dark-mode nav ul li a:hover {
+            color: #F4A900;
+        }
 
-.dark-mode header {
-    background: #1a1a1a;
-}
+        .dark-mode header {
+            background: #1a1a1a;
+        }
 
-.dark-mode .popup {
-    background: rgba(0, 0, 0, 0.9);
-}
+        .dark-mode .popup {
+            background: rgba(0, 0, 0, 0.9);
+        }
 
-.dark-mode .popup-btn {
-    background: rgba(255, 255, 255, 0.3);
-}
+        .dark-mode .popup-btn {
+            background: rgba(255, 255, 255, 0.3);
+        }
 
 
     </style>
@@ -411,7 +411,7 @@
         <div class="slider-container" onclick="openPopup()">
             <button class="slider-btn prev-btn" onclick="prevSlide(event)">&#10094;</button>
             <div class="zoom-container">
-                <img id="displayImage" src="images/bgimage.jpg" alt="Car Image">
+                <img id="displayImage" src="Hyundai i20/interior1.jpg" alt="Car Image">
             </div>
             <button class="slider-btn next-btn" onclick="nextSlide(event)">&#10095;</button>
         </div>
@@ -434,7 +434,7 @@
     <div class="popup-content">
         <span class="close" onclick="closePopup()">&times;</span>
         <span class="popup-btn popup-prev" onclick="prevImage()">&#10094;</span>
-        <img id="popupImage" src="images/interior1.jpg" alt="Popup Image">
+        <img id="popupImage" src="Hyundai i20/interior1.jpg" alt="Popup Image">
         <span class="popup-btn popup-next" onclick="nextImage()">&#10095;</span>
     </div>
 </div>
@@ -442,11 +442,11 @@
 <div class="popup" id="colorPopup">
     <div class="popup-content">
         <span class="close" onclick="closeColorPopup()">&times;</span>
-        <img id="colorImage" src="images/car-red.jpg" alt="Car Color Image">
+        <img id="colorImage" src="Hyundai i20/" alt="Car Color Image">
         <div class="color-options">
-            <span class="color-circle" style="background: red;" onclick="changeColor('images/car-red.jpg')"></span>
-            <span class="color-circle" style="background: blue;" onclick="changeColor('images/car-blue.jpg')"></span>
-            <span class="color-circle" style="background: black;" onclick="changeColor('images/color3.jpg')"></span>
+            <span class="color-circle" style="background: red;" onclick="changeColor('Hyundai i20/car-red.jpg')"></span>
+            <span class="color-circle" style="background: blue;" onclick="changeColor('Hyundai i20/car-blue.jpg')"></span>
+            <span class="color-circle" style="background: black;" onclick="changeColor('Hyundai i20/color3.jpg')"></span>
         </div>
     </div>
 </div>
@@ -462,7 +462,7 @@
 </div>
 
 <script>
-    let interiorImages = ["images/interior1.jpg", "images/interior2.jpg"];
+    let interiorImages = ["Hyundai i20/interior1.jpg", "Hyundai i20/interior2.jpg","Hyundai i20/interior3.jpg", "Hyundai i20/interior4.jpg","Hyundai i20/interior5.jpg", "Hyundai i20/interior6.jpg","Hyundai i20/interior7.jpg", "Hyundai i20/interior8.jpg","Hyundai i20/interior9.jpg", "Hyundai i20/interior10.jpg","Hyundai i20/interior11.jpg", "Hyundai i20/interior12.jpg","Hyundai i20/interior13.jpg", "Hyundai i20/interior14.jpg","Hyundai i20/interior15.jpg", "Hyundai i20/interior16.jpg","Hyundai i20/interior17.jpg", "Hyundai i20/interior18.jpg","Hyundai i20/interior19.jpg", "Hyundai i20/interior20.jpg","Hyundai i20/interior21.jpg", "Hyundai i20/interior22.jpg","Hyundai i20/interior23.jpg"];
     let exteriorImages = ["Hyundai i20/exterior1.jpg", "Hyundai i20/exterior2.jpg", "Hyundai i20/exterior3.jpg", "Hyundai i20/exterior4.jpg", "Hyundai i20/exterior5.jpg", "Hyundai i20/exterior6.jpg", "Hyundai i20/exterior7.jpg", "Hyundai i20/exterior8.jpg", "Hyundai i20/exterior9.jpg", "Hyundai i20/exterior10.jpg"];
     let currentImages = interiorImages;
     let currentIndex = 0;
