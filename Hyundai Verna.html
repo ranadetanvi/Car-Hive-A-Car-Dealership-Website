@@ -410,7 +410,7 @@
         <div class="slider-container" onclick="openPopup()">
             <button class="slider-btn prev-btn" onclick="prevSlide(event)">&#10094;</button>
             <div class="zoom-container">
-                <img id="displayImage" src="images/bgimage.jpg" alt="Car Image">
+                <img id="displayImage" src="Hyundai Verna/interior1.jpg" alt="Car Image">
             </div>
             <button class="slider-btn next-btn" onclick="nextSlide(event)">&#10095;</button>
         </div>
@@ -433,7 +433,7 @@
     <div class="popup-content">
         <span class="close" onclick="closePopup()">&times;</span>
         <span class="popup-btn popup-prev" onclick="prevImage()">&#10094;</span>
-        <img id="popupImage" src="images/interior1.jpg" alt="Popup Image">
+        <img id="popupImage" src="Hyundai Verna/interior1.jpg" alt="Popup Image">
         <span class="popup-btn popup-next" onclick="nextImage()">&#10095;</span>
     </div>
 </div>
@@ -462,7 +462,7 @@
 </div>
 
 <script>
-    let interiorImages = ["images/interior1.jpg", "images/interior2.jpg"];
+    let interiorImages = ["Hyundai Verna/interior1.jpg","Hyundai Verna/interior2.jpg","Hyundai Verna/interior3.jpg","Hyundai Verna/interior4.jpg","Hyundai Verna/interior5.jpg","Hyundai Verna/interior6.jpg","Hyundai Verna/interior7.jpg","Hyundai Verna/interior8.jpg","Hyundai Verna/interior9.jpg","Hyundai Verna/interior10.jpg","Hyundai Verna/interior11.jpg","Hyundai Verna/interior12.jpg","Hyundai Verna/interior13.jpg","Hyundai Verna/interior14.jpg","Hyundai Verna/interior15.jpg","Hyundai Verna/interior16.jpg","Hyundai Verna/interior17.jpg","Hyundai Verna/interior18.jpg","Hyundai Verna/interior19.jpg","Hyundai Verna/interior20.jpg","Hyundai Verna/interior21.jpg","Hyundai Verna/interior22.jpg","Hyundai Verna/interior23.jpg","Hyundai Verna/interior24.jpg","Hyundai Verna/interior25.jpg","Hyundai Verna/interior26.jpg","Hyundai Verna/interior27.jpg","Hyundai Verna/interior28.jpg"];
     let exteriorImages = ["Hyundai Verna/exterior1.jpg", "Hyundai Verna/exterior2.jpg", "Hyundai Verna/exterior3.jpg", "Hyundai Verna/exterior4.jpg", "Hyundai Verna/exterior5.jpg", "Hyundai Verna/exterior6.jpg", "Hyundai Verna/exterior7.jpg", "Hyundai Verna/exterior8.jpg", "Hyundai Verna/exterior9.jpg"];
     let currentImages = interiorImages;
     let currentIndex = 0;
@@ -506,16 +506,16 @@
             "Special Edition": ["Engine: 2.0L Turbo Petrol", "Transmission: 8-Speed Auto", "Mileage: 14 km/l", "Airbags: 6", "Sunroof: Panoramic"]
         };
 
-        function loadVariants() {
-            const wrapper = document.getElementById("carouselWrapper");
-            wrapper.innerHTML = "";
-            Object.keys(variants).forEach(variant => {
-                const card = document.createElement("div");
-                card.classList.add("card");
-                card.innerHTML = `<h3>${variant}</h3><ul>` +
-                    variants[variant].map(feature => `<li>${feature}</li>`).join("") +
-                    `</ul>`;
-                wrapper.appendChild(card);
+    function loadVariants() {
+        const wrapper = document.getElementById("carouselWrapper");
+        wrapper.innerHTML = "";
+        Object.keys(variants).forEach(variant => {
+            const card = document.createElement("div");
+            card.classList.add("card");
+            card.innerHTML = `<h3>${variant}</h3><ul>` +
+                variants[variant].map(feature => `<li>${feature}</li>`).join("") +
+                `</ul>`;
+            wrapper.appendChild(card);
             });
         }
 
@@ -528,17 +528,17 @@
         });
 
         function showColors() {
-    document.getElementById("colorPopup").style.display = "flex";
-}
+            document.getElementById("colorPopup").style.display = "flex";
+        }
 
-function closeColorPopup() {
-    document.getElementById("colorPopup").style.display = "none";
-}
+        function closeColorPopup() {
+            document.getElementById("colorPopup").style.display = "none";
+        }
 
-function changeColor(imageSrc) {
-    document.getElementById("colorImage").src = imageSrc;
-    document.getElementById("displayImage").src = imageSrc;
-}
+        function changeColor(imageSrc) {
+            document.getElementById("colorImage").src = imageSrc;
+            document.getElementById("displayImage").src = imageSrc;
+        }
         window.onload = loadVariants;
 </script>
 <script src="hm2.js"></script>
